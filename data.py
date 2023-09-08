@@ -39,17 +39,16 @@ def get_plantnet_data(root, image_size, crop_size, batch_size, num_workers, pret
     trainset = Plantnet(root, 'train', transform=transform_train)
     train_class_to_num_instances = Counter(trainset.targets)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
-                                              shuffle=True, num_workers=num_workers)
+                                              shuffle=True, )
 
     valset = Plantnet(root, 'val', transform=transform_test)
-
     valloader = torch.utils.data.DataLoader(valset, batch_size=batch_size,
-                                            shuffle=True, num_workers=num_workers)
+                                            shuffle=False, )
 
     testset = Plantnet(root, 'test', transform=transform_test)
     test_class_to_num_instances = Counter(testset.targets)
     testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
-                                             shuffle=False, num_workers=num_workers)
+                                             shuffle=False, )
 
     val_class_to_num_instances = Counter(valset.targets)
     n_classes = len(trainset.classes)
